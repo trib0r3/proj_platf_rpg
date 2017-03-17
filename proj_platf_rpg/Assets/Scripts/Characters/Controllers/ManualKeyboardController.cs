@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[System.Serializable]
 public class ManualKeyboardController : MonoBehaviour, ICharacterController
 {
   const float MOV_LEFT = -1.0f;
