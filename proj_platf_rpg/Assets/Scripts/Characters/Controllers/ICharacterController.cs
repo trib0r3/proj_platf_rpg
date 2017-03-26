@@ -4,6 +4,7 @@ public interface ICharacterController
 
   float moveDirection { get; }
   bool isJumpClicked { get; }
+  bool isRunningKeyClicked { get; }
 
   void Control();
 }

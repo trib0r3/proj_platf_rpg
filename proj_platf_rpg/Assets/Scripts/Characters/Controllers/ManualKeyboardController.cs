@@ -9,9 +9,11 @@ public class ManualKeyboardController : MonoBehaviour, ICharacterController
   public KeyCode keyMoveLeft = KeyCode.LeftArrow;
   public KeyCode keyMoveRight = KeyCode.RightArrow;
   public KeyCode keyJump = KeyCode.Space;
+  public KeyCode keyRun = KeyCode.LeftShift;
 
-  float m_movdir = 0.0f;
-  bool m_jump = false;
+  protected float m_movdir = 0.0f;
+  protected bool m_jump = false;
+  protected bool m_isRunning = false;
 
 
   public string controllerType
@@ -44,26 +46,51 @@ public class ManualKeyboardController : MonoBehaviour, ICharacterController
     }
   }
 
+  public bool isRunningKeyClicked
+  {
+    get
+    {
+      return m_isRunning;
+    }
+  }
+
   public void Control()
   {
-    if(Input.GetKeyDown(keyMoveLeft))
-    {
-      m_movdir = MOV_LEFT;
-    }
-    else if(Input.GetKeyDown(keyMoveRight))
-    {
-      m_movdir = MOV_RIGHT;
-    }
+    // HACK Temporary change, fix later
+    m_movdir = Input.GetAxis("Horizontal");
 
-    if ((m_movdir == MOV_LEFT && Input.GetKeyUp(keyMoveLeft)) || 
-       (m_movdir == MOV_RIGHT && Input.GetKeyUp(keyMoveRight)))
-    {
-      m_movdir = MOV_STOP;
-    }
+    /* Stop Character */
+ //   if (Input.GetKeyUp(keyMoveLeft) || Input.GetKeyUp(keyMoveRight))
+ //   {
+ //     m_movdir = MOV_STOP;
+ //   }
 
+    /* Moving */ // FIXME
+ //   if (Input.GetKeyDown(keyMoveLeft))
+ //   {
+ //     m_movdir = MOV_LEFT;
+ //   }
+
+ //   if (Input.GetKeyDown(keyMoveRight))
+ //   {
+ //     m_movdir = MOV_RIGHT;
+ //   }
+
+    //m_movdir = Input.GetAxis("Horizontal");    
+    /* Jumping */
     if(Input.GetKeyDown(keyJump))
     {
       m_jump = true;
+    }
+
+    /* Running */
+    if(Input.GetKeyDown(keyRun))
+    {
+      m_isRunning = true;
+    }
+    else if(Input.GetKeyUp(keyRun))
+    {
+      m_isRunning = false;
     }
   }
 }

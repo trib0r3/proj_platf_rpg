@@ -12,6 +12,8 @@ public class PlayableCharacter : MonoBehaviour
     KEYBOARD, AI
   };
 
+  public int jumpLimit = 1;
+
   [SerializeField]
   protected int m_hp = 100;
 
@@ -30,8 +32,12 @@ public class PlayableCharacter : MonoBehaviour
   [SerializeField]
   protected ControllerType m_controllerType = ControllerType.KEYBOARD;
 
+  [SerializeField]
+  protected CollisionReceiver m_groundCheckReceiver;
+
   protected ICharacterController m_controller;
   protected Rigidbody2D m_rigidbody;
+  protected int m_availableJumps;
 
 
   public int hp
@@ -129,11 +135,23 @@ public class PlayableCharacter : MonoBehaviour
       Debug.LogWarning("Character Type is not set!", this);
     }
 
-    m_controller = probe_character_controller();
+    m_controller = ProbeCharacterController();
     if (m_controller == null)
     {
       Debug.LogWarning("Character controller not set!", this);
     }
+
+    // just checks...
+    if(m_groundCheckReceiver == null)
+    {
+      Debug.LogWarning("Collision Receiver for ground detector is not set!", this);
+    }
+  }
+
+  protected virtual void Start()
+  {
+    m_availableJumps = jumpLimit;
+    m_groundCheckReceiver.onTriggerEnterCallbacks += OnGroundEnter;
   }
 
   protected virtual void FixedUpdate()
@@ -152,11 +170,15 @@ public class PlayableCharacter : MonoBehaviour
 
   protected virtual void Jump()
   {
-    if(m_controller.isJumpClicked)
+    if (m_controller.isJumpClicked && m_availableJumps > 0)
+    {
+      m_availableJumps--;
+      m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, 0.0f); // reset falling speed
       m_rigidbody.AddForce(new Vector2(0, m_hspeed * mass));
+    }
   }
 
-  protected ICharacterController probe_character_controller()
+  protected ICharacterController ProbeCharacterController()
   {
     ICharacterController conn = null;
     switch (m_controllerType)
@@ -176,5 +198,10 @@ public class PlayableCharacter : MonoBehaviour
     }
 
     return conn;
+  }
+
+  protected void OnGroundEnter(Collider2D other)
+  {
+    m_availableJumps = jumpLimit;
   }
 }
