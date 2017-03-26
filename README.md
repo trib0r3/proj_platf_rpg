@@ -12,7 +12,7 @@ Wszystkie lekcje dostepne sa [tutaj](http://szymonsiarkiewicz.pl/poradniki/proj_
 0. [Reboot](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/0-reboot/) - Wprowadzenie i projekt gry
 1. [Nauka chodzenia](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/1-nauka-chodzenia/) - System sterowania postaciami
 2. [Zwyciezaj, albo gin!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/2-zwyciezaj-albo-gin/) - Mechanizm zasad decydujacych o wygranej / przegranej
-3. [Wyginam smialo cialo](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/piszemy-rpgo-platformowke-3-wyginaj-smialo-cialo/) - Ruchy specjalne: podwojne skoki, bieganie
+3. [Wyginam smialo cialo](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/3-wyginaj-smialo-cialo/) - Ruchy specjalne: podwojne skoki, bieganie
 4. Walka (*premiera WW13*) - pierwsze podejscie do systemu walki
 5. Dajcie mi przeciwnika! (*premiera WW14*) - wprowadzenie przeciwnikow, AI
 6. *coming soon...*
