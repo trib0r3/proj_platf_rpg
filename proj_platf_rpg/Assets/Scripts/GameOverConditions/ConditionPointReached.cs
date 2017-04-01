@@ -6,6 +6,7 @@ public class ConditionPointReached : GameOverCondition
   private BoxCollider2D m_box2d;
   private bool m_playerReached = false;
   private string m_info = "";
+  private SpriteRenderer m_renderer;
 
   public override string GetProgressInfo()
   {
@@ -28,6 +29,7 @@ public class ConditionPointReached : GameOverCondition
   protected void processSuccess()
   {
     m_info = "Point Reached!";
+    m_renderer.color = Color.cyan;
     GameMaster.gm.NotifySuccess(this);
   }
 
@@ -35,6 +37,7 @@ public class ConditionPointReached : GameOverCondition
   private void Awake()
   {
     m_box2d = GetComponent<BoxCollider2D>();
+    m_renderer = GetComponent<SpriteRenderer>();
   }
 
   private void Start()

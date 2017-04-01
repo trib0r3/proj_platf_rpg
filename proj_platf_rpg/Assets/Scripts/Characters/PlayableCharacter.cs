@@ -12,13 +12,8 @@ public class PlayableCharacter : MonoBehaviour
     KEYBOARD, AI
   };
 
+  public CharacterStats stats;
   public int jumpLimit = 1;
-
-  [SerializeField]
-  protected int m_hp = 100;
-
-  [SerializeField]
-  protected float m_dmg = 1;
 
   [SerializeField]
   protected float m_vspeed = 5;
@@ -35,36 +30,13 @@ public class PlayableCharacter : MonoBehaviour
   [SerializeField]
   protected CollisionReceiver m_groundCheckReceiver;
 
+  [SerializeField]
+  protected SpriteRenderer m_renderer;
+
   protected ICharacterController m_controller;
   protected Rigidbody2D m_rigidbody;
   protected int m_availableJumps;
 
-
-  public int hp
-  {
-    get
-    {
-      return m_hp;
-    }
-    set
-    {
-      // TODO add special effects
-      m_hp = value;
-    }
-  }
-
-  public float dmg
-  {
-    get
-    {
-      return m_dmg;
-    }
-    set
-    {
-      // TODO add special effects
-      m_dmg = value;
-    }
-  }
 
   public float verticalSpeed
   {
@@ -121,6 +93,18 @@ public class PlayableCharacter : MonoBehaviour
     }
   }
 
+  public virtual void NotifyDamageTaken()
+  {
+    float hp = stats.hp;
+    Debug.Log("Got hit, current hp: " + hp.ToString(), this);
+    GameMaster.gm.specialEffects.ChangeTempColor(m_renderer, Color.red, stats.timeInvulnOnHit);
+
+    if (hp == 0)
+    {
+      Debug.Log("Play death anim!");
+    }
+  }
+
   protected virtual void Awake()
   {
     m_rigidbody = GetComponent<Rigidbody2D>();
@@ -146,6 +130,12 @@ public class PlayableCharacter : MonoBehaviour
     {
       Debug.LogWarning("Collision Receiver for ground detector is not set!", this);
     }
+
+    if (m_renderer == null)
+    {
+      Debug.LogWarning("Cannot find sprite renderer", this);
+    }
+
   }
 
   protected virtual void Start()

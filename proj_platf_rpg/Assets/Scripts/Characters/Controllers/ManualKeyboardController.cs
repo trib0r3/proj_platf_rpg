@@ -76,7 +76,6 @@ public class ManualKeyboardController : MonoBehaviour, ICharacterController
  //     m_movdir = MOV_RIGHT;
  //   }
 
-    //m_movdir = Input.GetAxis("Horizontal");    
     /* Jumping */
     if(Input.GetKeyDown(keyJump))
     {

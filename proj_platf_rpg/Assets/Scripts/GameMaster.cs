@@ -3,11 +3,18 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
   public static GameMaster gm = null;
+  public SpecialEffects specialEffects;
 
   void Awake()
   {
     if (gm == null)
       gm = this;
+  }
+
+  private void Start()
+  {
+    if (specialEffects == null)
+      Debug.LogWarning("Special Effects not found", this);
   }
 
   public void NotifySuccess(GameOverCondition cond)

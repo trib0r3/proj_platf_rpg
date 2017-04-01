@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 61068068375559598}
   - component: {fileID: 50741746503413562}
   - component: {fileID: 114978802114627988}
+  - component: {fileID: 114347664110635424}
   - component: {fileID: 114254059682402956}
   m_Layer: 8
   m_Name: Player
@@ -148,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1098421788688132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.66, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4528138308578586}
@@ -228,7 +229,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.4718997, y: 2.4591014}
+  m_Size: {x: 2.5, y: 2.5}
 --- !u!61 &61098644880162616
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -256,7 +257,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 0.15}
+  m_Size: {x: 2, y: 0.15}
 --- !u!61 &61797837096475970
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -297,6 +298,22 @@ MonoBehaviour:
   keyMoveRight: 275
   keyJump: 32
   keyRun: 304
+--- !u!114 &114347664110635424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098421788688132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179e05743a1a1d24a9aa15913210b769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 114978802114627988}
+  hitable: 1
+  ownerNotificationsEnabled: 1
+  m_hp: 100
+  m_dmg: 1
 --- !u!114 &114398994065830540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -330,17 +347,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e22c5c3df45c94ca5b20c40aa8016e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 114347664110635424}
   jumpLimit: 2
-  m_hp: 100
-  m_dmg: 1
   m_vspeed: 5
   m_hspeed: 400
   m_characterType: 1
   m_controllerType: 0
   m_groundCheckReceiver: {fileID: 114118311192807936}
-  maxRunningSpeed: 8
-  m_leftReceiver: {fileID: 114398994065830540}
-  m_rightReceiver: {fileID: 114752778540024132}
+  m_renderer: {fileID: 212748109589319158}
+  runningSpeedMultiplier: 2
+  m_conditionDeath: {fileID: 0}
 --- !u!212 &212748109589319158
 SpriteRenderer:
   m_ObjectHideFlags: 1
