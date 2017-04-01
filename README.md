@@ -13,9 +13,16 @@ Wszystkie lekcje dostepne sa [tutaj](http://szymonsiarkiewicz.pl/poradniki/proj_
 1. [Nauka chodzenia](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/1-nauka-chodzenia/) - System sterowania postaciami
 2. [Zwyciezaj, albo gin!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/2-zwyciezaj-albo-gin/) - Mechanizm zasad decydujacych o wygranej / przegranej
 3. [Wyginam smialo cialo](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/3-wyginaj-smialo-cialo/) - Ruchy specjalne: podwojne skoki, bieganie
-4. Walka (*premiera WW13*) - pierwsze podejscie do systemu walki
-5. Dajcie mi przeciwnika! (*premiera WW14*) - wprowadzenie przeciwnikow, AI
-6. *coming soon...*
+4. [Przygotowanie do walki](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/4-przygotowanie-do-walki/) - pierwsze podejscie do systemu walki
+5. Walczmy! (*premiera WW14*) - walka dla gry platformowej
+6. Dajcie mi przeciwnika! (*premiera WW15*) - wprowadzenie przeciwnikow, AI
+7. UI (*premiera WW16*) - graficzny interfejs uzytkownika
+8. Diabel tkwi w szczegolach (*premiera WW17*) - dopracowujemy napisane elementy pod gre pod platformowke
+9. Budujemy mosty(*premiera WW18*) - finalizacja prac nad czescia platformowa
+1. Masz moj miecz! - wprowadzenie do gry RPG i stworzenie ekwipunku
+2. Zabij, znajdz, posprzataj... - system zadan
+3. Umiejetnosci
+2. *coming soon...*
 
 
 ## Wspoluczestnictwo w projekcie
