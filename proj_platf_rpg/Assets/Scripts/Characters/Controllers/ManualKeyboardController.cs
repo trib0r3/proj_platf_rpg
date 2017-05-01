@@ -10,10 +10,12 @@ public class ManualKeyboardController : MonoBehaviour, ICharacterController
   public KeyCode keyMoveRight = KeyCode.RightArrow;
   public KeyCode keyJump = KeyCode.Space;
   public KeyCode keyRun = KeyCode.LeftShift;
+  public KeyCode keyAttack = KeyCode.LeftControl;
 
   protected float m_movdir = 0.0f;
   protected bool m_jump = false;
   protected bool m_isRunning = false;
+  protected bool m_isAttack = false;
 
 
   public string controllerType
@@ -54,6 +56,11 @@ public class ManualKeyboardController : MonoBehaviour, ICharacterController
     }
   }
 
+  public bool isAttackClicked
+  {
+    get { return m_isAttack; }
+  }
+
   public void Control()
   {
     // HACK Temporary change, fix later
@@ -83,13 +90,9 @@ public class ManualKeyboardController : MonoBehaviour, ICharacterController
     }
 
     /* Running */
-    if(Input.GetKeyDown(keyRun))
-    {
-      m_isRunning = true;
-    }
-    else if(Input.GetKeyUp(keyRun))
-    {
-      m_isRunning = false;
-    }
+    m_isRunning = Input.GetKey(keyRun);
+
+    /* Attacking */
+    m_isAttack = Input.GetKey(keyAttack);
   }
 }

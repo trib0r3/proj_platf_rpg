@@ -12,6 +12,7 @@ public class PlayableCharacter : MonoBehaviour
     KEYBOARD, AI
   };
 
+  [Header("Stats")]
   public CharacterStats stats;
   public int jumpLimit = 1;
 
@@ -21,17 +22,25 @@ public class PlayableCharacter : MonoBehaviour
   [SerializeField]
   protected float m_hspeed = 400;
 
+  [Header("Controller")]
   [SerializeField]
   protected CharacterType m_characterType = CharacterType.NONE;
 
   [SerializeField]
   protected ControllerType m_controllerType = ControllerType.KEYBOARD;
 
+  [Header("Misc")]
+  [SerializeField]
+  protected Animator m_animator;
+
   [SerializeField]
   protected CollisionReceiver m_groundCheckReceiver;
 
   [SerializeField]
   protected SpriteRenderer m_renderer;
+
+  [SerializeField]
+  protected Weapon m_equippedWeapon;
 
   protected ICharacterController m_controller;
   protected Rigidbody2D m_rigidbody;
@@ -97,11 +106,14 @@ public class PlayableCharacter : MonoBehaviour
   {
     float hp = stats.hp;
     Debug.Log("Got hit, current hp: " + hp.ToString(), this);
-    GameMaster.gm.specialEffects.ChangeTempColor(m_renderer, Color.red, stats.timeInvulnOnHit);
 
     if (hp == 0)
     {
-      Debug.Log("Play death anim!");
+      m_animator.SetBool("isAlive", false);
+    }
+    else
+    {
+      GameMaster.gm.specialEffects.ChangeTempColor(m_renderer, Color.red, stats.timeInvulnOnHit);
     }
   }
 
@@ -136,6 +148,15 @@ public class PlayableCharacter : MonoBehaviour
       Debug.LogWarning("Cannot find sprite renderer", this);
     }
 
+    if (m_equippedWeapon == null)
+    {
+      Debug.LogWarning("Cannot find weapon", this);
+    }
+
+    if (m_animator == null)
+    {
+      Debug.LogWarning("Cannot find animator", this);
+    }
   }
 
   protected virtual void Start()
@@ -146,16 +167,22 @@ public class PlayableCharacter : MonoBehaviour
 
   protected virtual void FixedUpdate()
   {
+    if (stats.isDead)
+      return;
+
     m_controller.Control();
 
     Move();
     Jump();
+    Attack();
   }
 
   protected virtual void Move()
   {
     Vector2 v = m_rigidbody.velocity;
     m_rigidbody.velocity = new Vector2(m_vspeed * m_controller.moveDirection, v.y);
+
+    m_animator.SetFloat("speed", v.x != 0.0f ? 1.0f : -1.0f); // FIXME add more states (anim)
   }
 
   protected virtual void Jump()
@@ -166,6 +193,14 @@ public class PlayableCharacter : MonoBehaviour
       m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, 0.0f); // reset falling speed
       m_rigidbody.AddForce(new Vector2(0, m_hspeed * mass));
     }
+  }
+
+  protected virtual void Attack()
+  {
+    if (!m_controller.isAttackClicked)
+      return;
+
+    m_equippedWeapon.UseWeapon();
   }
 
   protected ICharacterController ProbeCharacterController()

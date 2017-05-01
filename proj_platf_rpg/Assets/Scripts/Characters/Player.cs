@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player : PlayableCharacter
 {
+  [Header("Player")]
   public float runningSpeedMultiplier = 2.0f;
 
   [SerializeField]
