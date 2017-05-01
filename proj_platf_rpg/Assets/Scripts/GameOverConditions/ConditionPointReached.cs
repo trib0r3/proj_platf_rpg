@@ -16,7 +16,6 @@ public class ConditionPointReached : GameOverCondition
 
   protected override bool isFailure()
   {
-    /* NOTICE */
     /* There is no possibility for failure, so always return false */
     return false;
   }

@@ -21,6 +21,16 @@ public class CharacterStats : MonoBehaviour
     }
   }
 
+  public bool canAtttack
+  {
+    get
+    {
+      // default behaviour:
+      // enable attack only if player is not invulnerable
+      return !m_invulnerable;
+    }
+  }
+
   public bool hitable = true;
   public bool ownerNotificationsEnabled = true;
   public float timeInvulnOnHit = 2.0f;
@@ -31,7 +41,7 @@ public class CharacterStats : MonoBehaviour
   [SerializeField]
   private float m_dmg = 1.0f;
 
-  public bool m_invulnerable = false;
+  private bool m_invulnerable = false;
 
 
   private void Awake()
@@ -50,30 +60,27 @@ public class CharacterStats : MonoBehaviour
     if (m_invulnerable) // if got hit...
       return;           // stay invulnerable on hit for seconds!
 
+    if (attackerStats.dmg == 0) // if base dmg is 0...
+      return;                   // attacking is disabled! Skip it!
+
     m_hp = Mathf.Max(m_hp - attackerStats.dmg, 0.0f);
 
     StartCoroutine(StayInvulnOnHit()); // temporary disable hitting player
 
-    if (ownerNotificationsEnabled)
+    if (ownerNotificationsEnabled && owner != null)
       owner.NotifyDamageTaken();
   }
 
   private void OnCollisionEnter2D(Collision2D collision)
   {
     CharacterStats enemy = collision.gameObject.GetComponent<CharacterStats>();
-    if(enemy != null)
-    {
-      GetHit(enemy);
-    }
+    ReceiveDamage(enemy);
   }
 
   private void OnTriggerEnter2D(Collider2D other)
   {
     CharacterStats enemy = other.gameObject.GetComponent<CharacterStats>();
-    if (enemy != null)
-    {
-      GetHit(enemy);
-    }
+    ReceiveDamage(enemy);
   }
 
   private IEnumerator StayInvulnOnHit()
@@ -81,5 +88,14 @@ public class CharacterStats : MonoBehaviour
     m_invulnerable = true;
     yield return new WaitForSeconds(timeInvulnOnHit);
     m_invulnerable = false;
+  }
+
+  private void ReceiveDamage(CharacterStats enemy)
+  {
+    if (enemy == null)
+      return;
+
+    if (enemy.canAtttack) // receive damage only if enemy can attack
+      GetHit(enemy);  // example skill is ready, character is not invuln.
   }
 }
