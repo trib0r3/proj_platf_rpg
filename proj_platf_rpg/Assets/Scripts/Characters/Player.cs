@@ -13,6 +13,8 @@ public class Player : PlayableCharacter
   {
     base.NotifyDamageTaken();
     m_conditionDeath.CheckConditions();
+
+    GameMaster.gm.playerHp.text = stats.hp.ToString() + " HP";
   }
 
   protected override void Start()
@@ -23,6 +25,8 @@ public class Player : PlayableCharacter
     {
       Debug.LogWarning("Death condition for player is not set!", this);
     }
+
+    GameMaster.gm.playerHp.text = stats.hp.ToString() + " HP";
   }
 
   protected override void Move()

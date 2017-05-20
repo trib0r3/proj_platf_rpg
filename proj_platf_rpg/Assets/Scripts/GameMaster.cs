@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour
 {
   public static GameMaster gm = null;
   public SpecialEffects specialEffects;
+  public Text playerHp;
 
   void Awake()
   {
