@@ -9,7 +9,7 @@ public class PlayableCharacter : MonoBehaviour
 
   public enum ControllerType
   {
-    KEYBOARD, AI
+    KEYBOARD, AI_WALKER, AI_BERSERKER
   };
 
   [Header("Stats")]
@@ -148,11 +148,6 @@ public class PlayableCharacter : MonoBehaviour
       Debug.LogWarning("Cannot find sprite renderer", this);
     }
 
-    if (m_equippedWeapon == null)
-    {
-      Debug.LogWarning("Cannot find weapon", this);
-    }
-
     if (m_animator == null)
     {
       Debug.LogWarning("Cannot find animator", this);
@@ -173,6 +168,8 @@ public class PlayableCharacter : MonoBehaviour
     m_controller.Control();
 
     Move();
+    Flip();
+
     Jump();
     Attack();
   }
@@ -183,6 +180,20 @@ public class PlayableCharacter : MonoBehaviour
     m_rigidbody.velocity = new Vector2(m_vspeed * m_controller.moveDirection, v.y);
 
     m_animator.SetFloat("speed", v.x != 0.0f ? 1.0f : -1.0f); // FIXME add more states (anim)
+  }
+
+  protected virtual void Flip()
+  {
+    Vector3 scale = gameObject.transform.localScale;
+    if (m_rigidbody.velocity.x < 0.0f)
+    {
+      scale.x = 1.0f;
+    }
+    else
+    {
+      scale.x = -1.0f;
+    }
+    gameObject.transform.localScale = scale;
   }
 
   protected virtual void Jump()
@@ -199,6 +210,8 @@ public class PlayableCharacter : MonoBehaviour
   {
     if (!m_controller.isAttackClicked)
       return;
+    if (m_equippedWeapon == null)
+      return;
 
     m_equippedWeapon.UseWeapon();
   }
@@ -210,6 +223,14 @@ public class PlayableCharacter : MonoBehaviour
     {
       case ControllerType.KEYBOARD:
         conn = GetComponent<ManualKeyboardController>();
+        break;
+
+      case ControllerType.AI_WALKER:
+        conn = GetComponent<AI_Walker>();
+        break;
+
+      case ControllerType.AI_BERSERKER:
+        conn = GetComponent<AI_Berserker>();
         break;
 
       default:

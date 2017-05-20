@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Character
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Objects
   - Interactive
   - WeaponAlliance
-  - 
+  - Enemy
   - 
   - 
   - 
