@@ -16,7 +16,7 @@ Wszystkie lekcje dostepne sa [tutaj](http://szymonsiarkiewicz.pl/poradniki/proj_
 4. [Przygotowanie do walki](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/4-przygotowanie-do-walki/) - pierwsze podejscie do systemu walki
 5. [Walczmy!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/5-walka/) - walka dla gry platformowej
 6. [Dajcie mi przeciwnika!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/6-dajcie-mi-przeciwnika/) - wprowadzenie przeciwnikow, AI
-7. UI (*premiera WW20*) - graficzny interfejs uzytkownika
+7. [UI](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/7-interfejs-graficzny/) - graficzny interfejs uzytkownika
 8. Diabel tkwi w szczegolach (*premiera WW21*) - dopracowujemy napisane elementy pod gre pod platformowke
 9. Budujemy mosty(*premiera WW22*) - finalizacja prac nad czescia platformowa
 1. Masz moj miecz! - wprowadzenie do gry RPG i stworzenie ekwipunku
