@@ -23,7 +23,9 @@ public class GameMaster : MonoBehaviour
   [SerializeField]
   Button m_continue;
 
-  private float m_storedTime = 1.0f;
+  [Header("Other")]
+  public ConditionNoEnemies condNoEnemies;
+
   private string m_currentScene;
   private bool m_isGameOver = false;
 
@@ -43,6 +45,11 @@ public class GameMaster : MonoBehaviour
     m_title.text = m_currentScene;
     m_gameStatus.text = "";
     m_missionDetails.text = levelDetails;
+
+    if(condNoEnemies != null)
+    {
+      condNoEnemies.AddActionOnSuccess(() => NotifySuccess(condNoEnemies));
+    }
 
 #if !UNITY_EDITOR
     ShowMenu();
@@ -73,6 +80,12 @@ public class GameMaster : MonoBehaviour
     Invoke("ShowMenu", 0.5f);
   }
 
+  public void NotifyEnemyDeath()
+  {
+    if (condNoEnemies != null)
+      condNoEnemies.CheckConditions();
+  }
+
   private void Update()
   {
     if (Input.GetKeyDown(KeyCode.Escape))
@@ -86,7 +99,6 @@ public class GameMaster : MonoBehaviour
   /* UI */
   public void ShowMenu()
   {
-    m_storedTime = Time.timeScale;
     Time.timeScale = 0;
     if(m_isGameOver && SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCount)
     {
@@ -98,7 +110,7 @@ public class GameMaster : MonoBehaviour
 
   public void HideMenu()
   {
-    Time.timeScale = m_storedTime;
+    Time.timeScale = 1.0f;
     m_gameMenuParent.SetActive(false);
   }
 
@@ -117,7 +129,7 @@ public class GameMaster : MonoBehaviour
 
   public void OnClickedRestart()
   {
-    Time.timeScale = m_storedTime;
+    Time.timeScale = 1.0f;
     SceneManager.LoadScene(m_currentScene);
   }
 

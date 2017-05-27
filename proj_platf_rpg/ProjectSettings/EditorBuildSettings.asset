@@ -9,3 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/sandbox.unity
   - enabled: 1
     path: Assets/Scenes/level001.unity
+  - enabled: 1
+    path: Assets/Scenes/level002.unity
+  - enabled: 1
+    path: Assets/Scenes/level003.unity

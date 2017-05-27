@@ -105,11 +105,10 @@ public class PlayableCharacter : MonoBehaviour
   public virtual void NotifyDamageTaken()
   {
     float hp = stats.hp;
-    Debug.Log("Got hit, current hp: " + hp.ToString(), this);
 
     if (hp == 0)
     {
-      m_animator.SetBool("isAlive", false);
+      OnDeath();
     }
     else
     {
@@ -249,5 +248,11 @@ public class PlayableCharacter : MonoBehaviour
   protected void OnGroundEnter(Collider2D other)
   {
     m_availableJumps = jumpLimit;
+  }
+
+  protected virtual void OnDeath()
+  {
+    if(m_animator != null)
+      m_animator.SetBool("isAlive", false);
   }
 }

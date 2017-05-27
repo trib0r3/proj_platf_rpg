@@ -86,7 +86,19 @@ public class CharacterStats : MonoBehaviour
     ReceiveDamage(enemy);
   }
 
+  private void OnCollisionStay2D(Collision2D collision)
+  {
+    CharacterStats enemy = collision.gameObject.GetComponent<CharacterStats>();
+    ReceiveDamage(enemy);
+  }
+
   protected virtual void OnTriggerEnter2D(Collider2D other)
+  {
+    CharacterStats enemy = other.gameObject.GetComponent<CharacterStats>();
+    ReceiveDamage(enemy);
+  }
+
+  protected virtual void OnTriggerStay2D(Collider2D other)
   {
     CharacterStats enemy = other.gameObject.GetComponent<CharacterStats>();
     ReceiveDamage(enemy);
