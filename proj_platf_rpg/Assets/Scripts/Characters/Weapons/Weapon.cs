@@ -44,14 +44,7 @@ public class Weapon : CharacterStats
     if (!canAtttack)
       return false;
 
-    if (!isInfinite)
-    {
-      m_ammunition--;
-    }
-
     m_animator.SetBool("isAttacking", true);
-    StartCoroutine(BeginCooldown());
-
     return true;
   }
 
@@ -72,5 +65,27 @@ public class Weapon : CharacterStats
     yield return new WaitForSeconds(m_cooldown);
     m_isCooldown = false;
     m_animator.SetBool("isAttacking", false);
+  }
+
+  override protected void OnCollisionEnter2D(Collision2D collision)
+  {
+    base.OnCollisionEnter2D(collision);
+    use_weapon();
+  }
+
+  protected override void OnTriggerEnter2D(Collider2D other)
+  {
+    base.OnTriggerEnter2D(other);
+    use_weapon();
+  }
+
+  protected void use_weapon()
+  {
+    if (!isInfinite)
+    {
+      m_ammunition--;
+    }
+
+    StartCoroutine(BeginCooldown());
   }
 }

@@ -11,10 +11,10 @@ public class Player : PlayableCharacter
 
   public override void NotifyDamageTaken()
   {
+    GameMaster.gm.playerHp.text = stats.hp.ToString() + " HP";
+
     base.NotifyDamageTaken();
     m_conditionDeath.CheckConditions();
-
-    GameMaster.gm.playerHp.text = stats.hp.ToString() + " HP";
   }
 
   protected override void Start()

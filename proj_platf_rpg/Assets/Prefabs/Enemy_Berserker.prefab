@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4664112985207112}
+  - component: {fileID: 61473443931557324}
   - component: {fileID: 61151342969291238}
   - component: {fileID: 50824542863711124}
   - component: {fileID: 114117984660190982}
@@ -110,7 +111,7 @@ GameObject:
   - component: {fileID: 114358469589093974}
   - component: {fileID: 212759739693097436}
   - component: {fileID: 95531804551279694}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +194,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1198270981958598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.84, y: -7.14, z: 0}
+  m_LocalPosition: {x: 13.65, y: -7.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4781160891124038}
@@ -313,6 +314,20 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.5}
+--- !u!61 &61473443931557324
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1198270981958598}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -4.49, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 5.9, y: 4.33}
 --- !u!61 &61524866932176338
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -424,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b192108802177647be503883d8cc518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_timeToChangeDirection: 1
 --- !u!114 &114516233522902646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,7 +476,7 @@ MonoBehaviour:
   stats: {fileID: 114117984660190982}
   jumpLimit: 1
   m_vspeed: 5
-  m_hspeed: 400
+  m_hspeed: 150
   m_characterType: 2
   m_controllerType: 2
   m_animator: {fileID: 95832371163837922}

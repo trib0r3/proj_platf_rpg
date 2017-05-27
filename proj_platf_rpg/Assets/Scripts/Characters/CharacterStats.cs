@@ -80,13 +80,13 @@ public class CharacterStats : MonoBehaviour
       owner.NotifyDamageTaken();
   }
 
-  protected void OnCollisionEnter2D(Collision2D collision)
+  protected virtual void OnCollisionEnter2D(Collision2D collision)
   {
     CharacterStats enemy = collision.gameObject.GetComponent<CharacterStats>();
     ReceiveDamage(enemy);
   }
 
-  protected void OnTriggerEnter2D(Collider2D other)
+  protected virtual void OnTriggerEnter2D(Collider2D other)
   {
     CharacterStats enemy = other.gameObject.GetComponent<CharacterStats>();
     ReceiveDamage(enemy);
