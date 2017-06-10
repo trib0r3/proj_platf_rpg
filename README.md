@@ -9,6 +9,10 @@ Wersje binarne gotowe do uruchomienia sa dostepne pod zakladka [Releases](https:
 
 Wszystkie lekcje dostepne sa [tutaj](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/).
 
+### Platformowka
+
+Wszystkie zmiany dotyczace wylacznie czesc platformowej znajduja sie pod branchem [platform](https://github.com/sheadovas/proj_platf_rpg/tree/platform)
+
 0. [Reboot](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/0-reboot/) - Wprowadzenie i projekt gry
 1. [Nauka chodzenia](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/1-nauka-chodzenia/) - System sterowania postaciami
 2. [Zwyciezaj, albo gin!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/2-zwyciezaj-albo-gin/) - Mechanizm zasad decydujacych o wygranej / przegranej
@@ -18,12 +22,13 @@ Wszystkie lekcje dostepne sa [tutaj](http://szymonsiarkiewicz.pl/poradniki/proj_
 6. [Dajcie mi przeciwnika!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/6-dajcie-mi-przeciwnika/) - wprowadzenie przeciwnikow, AI
 7. [UI](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/7-interfejs-graficzny/) - graficzny interfejs uzytkownika
 8. [Diabel tkwi w szczegolach](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/8-diabel-tkwi-w-szczegolach/) - dopracowujemy napisane elementy pod gre pod platformowke
-9. Budujemy mosty(*premiera WW22*) - finalizacja prac nad czescia platformowa
-1. Masz moj miecz! - wprowadzenie do gry RPG i stworzenie ekwipunku
-2. Zabij, znajdz, posprzataj... - system zadan
-3. Umiejetnosci
-2. *coming soon...*
 
+### RPG
+
+Czesc dotyczaca RPG znajduje sie pod branchami:
+
+- [master](https://github.com/sheadovas/proj_platf_rpg/tree/master)
+- [RPG](https://github.com/sheadovas/proj_platf_rpg/tree/rpg)
 
 ## Wspoluczestnictwo w projekcie
 
