@@ -30,7 +30,7 @@ Czesc dotyczaca RPG znajduje sie pod branchami:
 - [master](https://github.com/sheadovas/proj_platf_rpg/tree/master)
 - [RPG](https://github.com/sheadovas/proj_platf_rpg/tree/rpg)
 
-0. Witaj wedrowcze! - wprowadzenie do czesci RPG
+0. [Witaj wedrowcze!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/9-witaj-wedrowcze/) - wprowadzenie do czesci RPG
 1. Masz moj miecz! - stworzenie ekwipunku
 2. Zabij, znajdz, posprzataj... - system zadan
 3. Umiejetnosci
