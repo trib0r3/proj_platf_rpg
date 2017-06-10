@@ -63,28 +63,28 @@ public class ManualKeyboardController : MonoBehaviour, ICharacterController
 
   public void Control()
   {
-    // HACK Temporary change, fix later
     m_movdir = Input.GetAxis("Horizontal");
 
     /* Stop Character */
- //   if (Input.GetKeyUp(keyMoveLeft) || Input.GetKeyUp(keyMoveRight))
- //   {
- //     m_movdir = MOV_STOP;
- //   }
+    // NOTICE Fix for Unity
+    //   if (Input.GetKeyUp(keyMoveLeft) || Input.GetKeyUp(keyMoveRight))
+    //   {
+    //     m_movdir = MOV_STOP;
+    //   }
 
-    /* Moving */ // FIXME
- //   if (Input.GetKeyDown(keyMoveLeft))
- //   {
- //     m_movdir = MOV_LEFT;
- //   }
+    /* Moving */
+    //   if (Input.GetKeyDown(keyMoveLeft))
+    //   {
+    //     m_movdir = MOV_LEFT;
+    //   }
 
- //   if (Input.GetKeyDown(keyMoveRight))
- //   {
- //     m_movdir = MOV_RIGHT;
- //   }
+    //   if (Input.GetKeyDown(keyMoveRight))
+    //   {
+    //     m_movdir = MOV_RIGHT;
+    //   }
 
     /* Jumping */
-    if(Input.GetKeyDown(keyJump))
+    if (Input.GetKeyDown(keyJump))
     {
       m_jump = true;
     }

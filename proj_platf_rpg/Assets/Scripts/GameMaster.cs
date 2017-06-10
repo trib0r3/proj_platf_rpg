@@ -100,7 +100,7 @@ public class GameMaster : MonoBehaviour
   public void ShowMenu()
   {
     Time.timeScale = 0;
-    if(m_isGameOver && SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCount)
+    if(m_isGameOver && SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCountInBuildSettings)
     {
       m_continue.interactable = false;
     }

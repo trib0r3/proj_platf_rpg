@@ -55,7 +55,6 @@ public class PlayableCharacter : MonoBehaviour
     }
     set
     {
-      // TODO add special effects
       m_vspeed = value;
     }
   }
@@ -68,7 +67,6 @@ public class PlayableCharacter : MonoBehaviour
     }
     set
     {
-      // TODO add special effects
       m_hspeed = value;
     }
   }
@@ -81,7 +79,6 @@ public class PlayableCharacter : MonoBehaviour
     }
     set
     {
-      // TODO add special effects
       m_rigidbody.mass = value;
     }
   }
@@ -178,7 +175,7 @@ public class PlayableCharacter : MonoBehaviour
     Vector2 v = m_rigidbody.velocity;
     m_rigidbody.velocity = new Vector2(m_vspeed * m_controller.moveDirection, v.y);
 
-    m_animator.SetFloat("speed", v.x != 0.0f ? 1.0f : -1.0f); // FIXME add more states (anim)
+    m_animator.SetFloat("speed", v.x != 0.0f ? 1.0f : -1.0f);
   }
 
   protected virtual void Flip()
