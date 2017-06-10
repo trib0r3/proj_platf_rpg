@@ -30,6 +30,12 @@ Czesc dotyczaca RPG znajduje sie pod branchami:
 - [master](https://github.com/sheadovas/proj_platf_rpg/tree/master)
 - [RPG](https://github.com/sheadovas/proj_platf_rpg/tree/rpg)
 
+0. Witaj wedrowcze! - wprowadzenie do czesci RPG
+1. Masz moj miecz! - stworzenie ekwipunku
+2. Zabij, znajdz, posprzataj... - system zadan
+3. Umiejetnosci
+2. *coming soon...*
+
 ## Wspoluczestnictwo w projekcie
 
 Kazdy zainteresowany pomoca w celu udoskonalenia kodu moze to zrobic dzieki mechanice *pull request'ow*. 
