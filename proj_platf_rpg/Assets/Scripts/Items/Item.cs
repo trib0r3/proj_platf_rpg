@@ -58,7 +58,6 @@ abstract public class Item : MonoBehaviour
 
   protected float m_baseWeight = 1.0f;
   protected int m_quantity = 1;
-  protected Sprite m_sprite;
 
   public virtual void Use(ItemProperty useContext)
   {

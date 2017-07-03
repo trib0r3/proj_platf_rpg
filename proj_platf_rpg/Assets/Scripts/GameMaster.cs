@@ -6,10 +6,12 @@ public class GameMaster : MonoBehaviour
 {
   public static GameMaster gm = null;
   public SpecialEffects specialEffects;
+  public Equipment playerEquipment;
 
   [Header("Overlay")]
   public Text playerHp;
   public string levelDetails = "";
+  public GameObject equipmentMenu;
 
   [Header("Ingame Menu")]
   [SerializeField]
@@ -51,6 +53,7 @@ public class GameMaster : MonoBehaviour
       condNoEnemies.AddActionOnSuccess(() => NotifySuccess(condNoEnemies));
     }
 
+    equipmentMenu.SetActive(false);
 #if !UNITY_EDITOR
     ShowMenu();
 #endif
@@ -92,6 +95,12 @@ public class GameMaster : MonoBehaviour
     {
       m_gameStatus.text = "Pause";
       ShowMenu();
+    }
+
+    if (Input.GetKeyDown(KeyCode.I))
+    {
+      // toggle inventory window
+      equipmentMenu.SetActive(!equipmentMenu.activeSelf);
     }
   }
 

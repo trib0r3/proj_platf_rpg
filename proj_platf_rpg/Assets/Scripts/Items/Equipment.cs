@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Equipment : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public class Equipment : MonoBehaviour
 
   // key is equipment id, unique only in eq context
   private Dictionary<int, Item> m_items = new Dictionary<int, Item>();
+
+  [SerializeField]
+  private Text m_textGold;
+  [SerializeField]
+  private Text m_textCapacity;
 
 
   public bool AddItem(Item item)
@@ -95,16 +101,24 @@ public class Equipment : MonoBehaviour
     }
 
     defaultItems = null;
+
     update_gold(gold); // force to update gui
+    update_weight(weight);
   }
 
   private void update_gold(int amount)
   {
     m_gold = amount;
+
+    if(m_textGold != null)
+      m_textGold.text = string.Format("{0}g", m_gold);
   }
 
   private void update_weight(float value)
   {
     m_weight = value;
+
+    if(m_textCapacity != null)
+      m_textCapacity.text = string.Format("{0} / {1}", weight, capacity);
   }
 }
