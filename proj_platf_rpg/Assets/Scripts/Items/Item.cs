@@ -4,6 +4,9 @@ abstract public class Item : MonoBehaviour
 {
   const int MAX_STACK_SIZE = 16;
 
+  // TODO add item count, 
+  // TODO move destroy item if all used to this class from ItemFood
+
   public enum ItemProperty
   {
     NONE      = 0,
@@ -26,6 +29,8 @@ abstract public class Item : MonoBehaviour
   };
 
   public float prize = 10; // per unit
+
+  [HideInInspector]
   public int eid = -1; // equipment id
 
   public ItemQuality quality

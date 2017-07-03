@@ -5,12 +5,20 @@ public class ItemFood : Item
   public float restore_hp = 10;
   bool useLock = false;
 
-  private void Awake()
+  public float GetRestorationHP()
   {
-    itemName = "Food";
-    itemDescription = "Use it to restore HP";
+    useLock = false;
+    if (quantity == 0)
+    {
+      Destroy(this, 1.0f);
+    }
 
-    enable_property(ItemProperty.EATABLE);
+    return restore_hp * GetStatsMultiplier();
+  }
+
+  public void Eat()
+  {
+    Use(ItemProperty.EATABLE);
   }
 
   protected override void on_item_use(ItemProperty useContext)
@@ -23,6 +31,7 @@ public class ItemFood : Item
       case ItemProperty.EATABLE:
         // only correct value
         // TODO restore caller hp
+        eat();
         break;
 
       default:
@@ -38,15 +47,13 @@ public class ItemFood : Item
     Debug.LogWarning("Detected invalid use case of item", this);
   }
 
-  public float GetRestorationHP()
-  {
-    useLock = false;
-    if(quantity == 0)
-    {
-      Destroy(this, 1.0f);
-    }
 
-    return restore_hp * GetStatsMultiplier();
+  private void Awake()
+  {
+    itemName = "Food";
+    itemDescription = "Use it to restore HP";
+
+    enable_property(ItemProperty.EATABLE);
   }
 
   private void eat()
