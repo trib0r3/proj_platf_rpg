@@ -1,4 +1,6 @@
-abstract public class Item
+using UnityEngine;
+
+abstract public class Item : MonoBehaviour
 {
   const int MAX_STACK_SIZE = 16;
 
@@ -24,6 +26,7 @@ abstract public class Item
   };
 
   public float prize = 10; // per unit
+  public int eid = -1; // equipment id
 
   public ItemQuality quality
   {
@@ -50,19 +53,19 @@ abstract public class Item
     set { on_item_quantity_changed(value); }
   }
 
-
   protected ItemProperty m_properties;
   protected ItemQuality m_quality = ItemQuality.NORMAL;
 
   protected float m_baseWeight = 1.0f;
   protected int m_quantity = 1;
-
+  protected Sprite m_sprite;
 
   public virtual void Use(ItemProperty useContext)
   {
-    if(HasProperty(ItemProperty.DISABLED))
+    if(HasProperty(ItemProperty.DISABLED) || !HasProperty(useContext))
     {
       // item is broken, so cannot be used
+      // or if item haven't ctx property
       on_item_use_failure();
       return;
     }
