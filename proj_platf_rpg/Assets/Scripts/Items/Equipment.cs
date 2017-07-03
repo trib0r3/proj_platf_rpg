@@ -21,11 +21,16 @@ public class Equipment : MonoBehaviour
 
   public Item[] defaultItems; // default items for eq added after eq creation
 
+  [SerializeField]
   private int m_gold = 0;
+
+  [SerializeField]
   private float m_capacity = 100;
   private float m_weight = 0;
 
   private int m_nextId = 0;
+
+  [SerializeField]
   private Transform m_itemsParent;
 
   // key is equipment id, unique only in eq context
@@ -34,6 +39,7 @@ public class Equipment : MonoBehaviour
 
   public bool AddItem(Item item)
   {
+    // Adds item only if can store additional items (based on item weight)
     if (weight + item.weight <= capacity)
     {
       m_items.Add(m_nextId++, item);
@@ -72,20 +78,24 @@ public class Equipment : MonoBehaviour
   }
 
 
-  private void Awake()
-  {
-    m_itemsParent = new GameObject("Items").transform;
-    m_itemsParent.SetParent(transform);
-  }
-
   private void Start()
   {
     foreach (Item item in defaultItems)
     {
-      AddItem(item);
+      if(!AddItem(item))
+      {
+        Debug.LogWarning(string.Format(
+          "{0}: item weight ({1}) exceeds available capacity (uses / available: {2} / {3})",
+          gameObject.name,
+          item.itemName,
+          item.weight,
+          capacity - weight)
+        );
+      }
     }
 
     defaultItems = null;
+    update_gold(gold); // force to update gui
   }
 
   private void update_gold(int amount)
