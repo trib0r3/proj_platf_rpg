@@ -3,11 +3,9 @@ using UnityEngine;
 public class ItemFood : Item
 {
   public float restore_hp = 10;
-  bool useLock = false;
 
   public float GetRestorationHP()
   {
-    useLock = false;
     if (quantity == 0)
     {
       Destroy(this, 1.0f);
@@ -23,9 +21,6 @@ public class ItemFood : Item
 
   protected override void on_item_use(ItemProperty useContext)
   {
-    if (useLock)
-      return;
-
     switch(useContext)
     {
       case ItemProperty.EATABLE:
@@ -47,18 +42,18 @@ public class ItemFood : Item
     Debug.LogWarning("Detected invalid use case of item", this);
   }
 
-
-  private void Awake()
+  protected override void Start()
   {
-    itemName = "Food";
-    itemDescription = "Use it to restore HP";
+    base.Start();
 
+    // NOTICE: every food is eatable
     enable_property(ItemProperty.EATABLE);
   }
+
 
   private void eat()
   {
     quantity--;
-    useLock = true;
+    m_useLock = true;
   }
 }

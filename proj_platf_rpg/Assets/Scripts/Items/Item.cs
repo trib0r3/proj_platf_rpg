@@ -4,9 +4,6 @@ abstract public class Item : MonoBehaviour
 {
   const int MAX_STACK_SIZE = 16;
 
-  // TODO add item count, 
-  // TODO move destroy item if all used to this class from ItemFood
-
   public enum ItemProperty
   {
     NONE      = 0,
@@ -58,15 +55,39 @@ abstract public class Item : MonoBehaviour
     set { on_item_quantity_changed(value); }
   }
 
+  // properties enabled only on start
+  // array is cleared after initialization
+  public ItemProperty[] initialProperties;
+
   protected ItemProperty m_properties;
   protected ItemQuality m_quality = ItemQuality.NORMAL;
 
   protected float m_baseWeight = 1.0f;
   protected int m_quantity = 1;
 
+  // use lock - concept
+  // we need to protect 1-use items against destroy
+  //
+  // example scenario:
+  //  1) we are using potion by Use()
+  //  2) if we have > 0 items in stack
+  //    2.1) we can get restoring mana amount by GetMana() method
+  //  3) else
+  //    3.1 item is destroyed (because is empty)
+  //    3.2 we cannot use GetMana() method because Item is destroyed :(
+  //
+  // solution:
+  //   lock item destroying during on time between Use() & GetMana(), then check conditions
+  //
+  // notice:
+  //   lock is set in child class, because we don't know correct context of setting lock on item
+  //   guard in Item does not guarantee, that correct context for item is correct of setting lock
+  //   so we have to do it manually in each class
+  protected bool m_useLock = false;
+
   public virtual void Use(ItemProperty useContext)
   {
-    if(HasProperty(ItemProperty.DISABLED) || !HasProperty(useContext))
+    if (HasProperty(ItemProperty.DISABLED) || !HasProperty(useContext))
     {
       // item is broken, so cannot be used
       // or if item haven't ctx property
@@ -74,8 +95,17 @@ abstract public class Item : MonoBehaviour
       return;
     }
 
-    // more actions should be implemented by user
-    on_item_use(useContext);
+    else if (HasProperty(ItemProperty.STACKABLE) && m_useLock)
+    {
+      // item is locked, just skip use & belive in user multi-click
+      return;
+    }
+
+    else
+    {
+      // more actions should be implemented by user
+      on_item_use(useContext);
+    }
   }
 
   public void SetProperties(ItemProperty properties)
@@ -93,6 +123,13 @@ abstract public class Item : MonoBehaviour
 
   public int GetStatsMultiplier()
   {
+    // disable lock
+    // important note: 
+    //   we dont know the context of use GetStats() 
+    //   & we fooly belive in that the call is made once when needed to get calculated value
+    //   see: GetRestorationHP() from ItemFood.cs 
+    m_useLock = false;
+
     return (int)m_quality;
   }
 
@@ -154,5 +191,15 @@ abstract public class Item : MonoBehaviour
     }
 
     m_quantity = amount;
+  }
+
+  protected virtual void Start()
+  {
+    foreach(ItemProperty prop in initialProperties)
+    {
+      enable_property(prop);
+    }
+
+    initialProperties = null;
   }
 }
