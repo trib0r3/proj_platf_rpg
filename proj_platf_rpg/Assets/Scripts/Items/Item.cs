@@ -14,6 +14,7 @@ abstract public class Item : MonoBehaviour
 
     ARMOUR    = (1 << 4),
     WEAPON    = (1 << 5),
+    EQUIPPED  = (1 << 6),
     
     DISABLED  = (1 << 6) // "broken"
   };
@@ -85,6 +86,26 @@ abstract public class Item : MonoBehaviour
   //   so we have to do it manually in each class
   protected bool m_useLock = false;
 
+  [SerializeField]
+  protected ItemObject m_itemObject;
+
+  [SerializeField]
+  private bool _physicalOnInit = false;
+  [SerializeField]
+  private Transform _physicalInitPosition;
+  [SerializeField]
+  private GameObject _physicalObjectPrefab;
+
+  public virtual void OnItemCollide(Collision2D collision)
+  {
+
+  }
+
+  public virtual void OnItemTrigger(Collider2D collider)
+  {
+
+  }
+
   public virtual void Use(ItemProperty useContext)
   {
     if (HasProperty(ItemProperty.DISABLED) || !HasProperty(useContext))
@@ -121,6 +142,40 @@ abstract public class Item : MonoBehaviour
     return false;
   }
 
+  public bool SetEquipped(bool equip)
+  {
+    if(!HasProperty(ItemProperty.EQUIPABLE))
+    {
+      // Item cannot be equipped,
+      // so return error
+      return false;
+    }
+    else
+    {
+      bool isEquipped = HasProperty(ItemProperty.EQUIPPED);
+      if (isEquipped ^ equip)
+      {
+        if (equip)
+        {
+          // item is equipped and we weant to equip it...
+          enable_property(ItemProperty.EQUIPPED);
+        }
+        else
+        {
+          // item is equipped and we want to un-equip it
+          disable_property(ItemProperty.EQUIPPED);
+        }
+          
+        return true;
+      }
+      else
+      {
+        // if both values are true or false...
+        return false;
+      }
+    }
+  }
+
   public int GetStatsMultiplier()
   {
     // disable lock
@@ -138,6 +193,12 @@ abstract public class Item : MonoBehaviour
     disable_property(ItemProperty.DISABLED);
   }
 
+  public virtual void SetPhysicalOnScene(bool physical, Vector3 position)
+  {
+    // in general we are making just simple wrapper,
+    // but in some cases we need to i.e. hide sprite renderer (weapons)
+    m_itemObject.SetVisibleOnScene(physical, position);
+  }
 
   protected abstract void on_item_use(ItemProperty useContext);
   protected abstract void on_item_use_failure();
@@ -201,5 +262,15 @@ abstract public class Item : MonoBehaviour
     }
 
     initialProperties = null;
+
+    m_itemObject = Instantiate(_physicalObjectPrefab)
+      .GetComponent<ItemObject>();
+
+    if (m_itemObject == null)
+      Debug.LogError("Empty Item Object", this);
+    else
+      m_itemObject.item = this;
+
+    SetPhysicalOnScene(_physicalOnInit, _physicalInitPosition.position);
   }
 }
