@@ -45,6 +45,12 @@ MonoBehaviour:
   eid: -1
   itemName: Cookie
   itemDescription: Just a cookie
+  initialProperties: 
+  m_itemObject: {fileID: 0}
+  _physicalOnInit: 0
+  _physicalInitPosition: {fileID: 0}
+  _physicalObjectPrefab: {fileID: 1543180564422272, guid: 5f7910246a19e9842a6fd23859ec6b84,
+    type: 2}
   restore_hp: 1
 --- !u!114 &114604288816595630
 MonoBehaviour:

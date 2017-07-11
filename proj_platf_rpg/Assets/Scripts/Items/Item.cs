@@ -4,6 +4,7 @@ abstract public class Item : MonoBehaviour
 {
   const int MAX_STACK_SIZE = 16;
 
+  #region Item properties
   public enum ItemProperty
   {
     NONE      = 0,
@@ -25,12 +26,14 @@ abstract public class Item : MonoBehaviour
     NORMAL = 1,
     SUPER  = 2
   };
+  #endregion
 
   public float prize = 10; // per unit
 
   [HideInInspector]
   public int eid = -1; // equipment id
 
+  #region Setters & Getters
   public ItemQuality quality
   {
     get { return m_quality; }
@@ -55,6 +58,7 @@ abstract public class Item : MonoBehaviour
     get { return m_quantity; }
     set { on_item_quantity_changed(value); }
   }
+  #endregion
 
   // properties enabled only on start
   // array is cleared after initialization
@@ -86,16 +90,25 @@ abstract public class Item : MonoBehaviour
   //   so we have to do it manually in each class
   protected bool m_useLock = false;
 
+  [Header("Physical Item Representation")]
+  // Representation of item in gameplay (non-ui) scene
   [SerializeField]
   protected ItemObject m_itemObject;
 
+  // Create physical representation of object during init of this item
   [SerializeField]
   private bool _physicalOnInit = false;
+
+  // Option for above option
+  // Initialize object on position
   [SerializeField]
-  private Transform _physicalInitPosition;
+  private Vector3 _physicalInitPosition = Vector3.zero;
+
+  // Required to instastate item representation (prefab of object)
   [SerializeField]
   private GameObject _physicalObjectPrefab;
 
+  #region Public methods
   public virtual void OnItemCollide(Collision2D collision)
   {
 
@@ -199,7 +212,9 @@ abstract public class Item : MonoBehaviour
     // but in some cases we need to i.e. hide sprite renderer (weapons)
     m_itemObject.SetVisibleOnScene(physical, position);
   }
+  #endregion
 
+  #region Protected methods
   protected abstract void on_item_use(ItemProperty useContext);
   protected abstract void on_item_use_failure();
 
@@ -271,6 +286,7 @@ abstract public class Item : MonoBehaviour
     else
       m_itemObject.item = this;
 
-    SetPhysicalOnScene(_physicalOnInit, _physicalInitPosition.position);
+    SetPhysicalOnScene(_physicalOnInit, _physicalInitPosition);
   }
+  #endregion
 }
