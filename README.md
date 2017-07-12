@@ -32,7 +32,8 @@ Czesc dotyczaca RPG znajduje sie pod branchami:
 
 0. [Witaj wedrowcze!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/9-witaj-wedrowcze/) - wprowadzenie do czesci RPG
 1. [Masz moj miecz!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/10-masz-moj-miecz) - ekwipunek, czesc pierwsza (GUI)
-2. (...) i moja tarcze! - ekwipunek, finalizacja prac
+2. [(masz) i moja tarcze!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/11-masz-i-moja-tarcze/) - ekwipunek, wprowadzenie niby-przedmiotow
+2. (masz) i moj topor - ekwipunek, finalizacja UI
 2. Zabij, znajdz, posprzataj... - system zadan
 3. Umiejetnosci
 2. *coming soon...*
