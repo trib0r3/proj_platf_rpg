@@ -17,7 +17,7 @@ abstract public class Item : MonoBehaviour
     WEAPON    = (1 << 5),
     EQUIPPED  = (1 << 6),
     
-    DISABLED  = (1 << 6) // "broken"
+    DISABLED  = (1 << 7) // "broken"
   };
 
   public enum ItemQuality
@@ -50,7 +50,7 @@ abstract public class Item : MonoBehaviour
 
   public float baseWeight
   {
-    get { return baseWeight; }
+    get { return m_baseWeight; }
   }
 
   public int quantity
@@ -60,6 +60,7 @@ abstract public class Item : MonoBehaviour
   }
   #endregion
 
+  #region Variables
   // properties enabled only on start
   // array is cleared after initialization
   public ItemProperty[] initialProperties;
@@ -107,6 +108,7 @@ abstract public class Item : MonoBehaviour
   // Required to instastate item representation (prefab of object)
   [SerializeField]
   private GameObject _physicalObjectPrefab;
+  #endregion
 
   #region Public methods
   public virtual void OnItemCollide(Collision2D collision)

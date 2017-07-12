@@ -27,6 +27,10 @@ public class Player : PlayableCharacter
     }
 
     GameMaster.gm.playerHp.text = stats.hp.ToString() + " HP";
+
+    // NOTICE default behaviour for player
+    // we are assuming there is only one player in game
+    equipment = GameMaster.gm.playerEquipment;
   }
 
   protected override void Move()

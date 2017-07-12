@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayableCharacter : MonoBehaviour
 {
+  #region Enums
   public enum CharacterType
   {
     NONE, PLAYER, ENEMY, OTHER
@@ -11,6 +12,10 @@ public class PlayableCharacter : MonoBehaviour
   {
     KEYBOARD, AI_WALKER, AI_BERSERKER
   };
+  #endregion
+
+  #region Variables
+  public Equipment equipment = null;
 
   [Header("Stats")]
   public CharacterStats stats;
@@ -45,8 +50,9 @@ public class PlayableCharacter : MonoBehaviour
   protected ICharacterController m_controller;
   protected Rigidbody2D m_rigidbody;
   protected int m_availableJumps;
+  #endregion
 
-
+  #region Setters, getters
   public float verticalSpeed
   {
     get
@@ -98,6 +104,8 @@ public class PlayableCharacter : MonoBehaviour
       return m_characterType;
     }
   }
+  #endregion
+
 
   public virtual void NotifyDamageTaken()
   {
@@ -168,6 +176,17 @@ public class PlayableCharacter : MonoBehaviour
 
     Jump();
     Attack();
+  }
+
+  protected virtual void OnTriggerEnter2D(Collider2D collision)
+  {
+    ItemObject itemObject = collision.gameObject.GetComponent<ItemObject>();
+    if(itemObject != null)
+    {
+      // we are here only during collison with item
+      // we are hitting it (ItemObject) -> item is collectable
+      CollectItem(itemObject.item);
+    }
   }
 
   protected virtual void Move()
@@ -251,5 +270,13 @@ public class PlayableCharacter : MonoBehaviour
   {
     if(m_animator != null)
       m_animator.SetBool("isAlive", false);
+  }
+
+  protected void CollectItem(Item item)
+  {
+    Debug.Log("Collect item!");
+
+    item.SetPhysicalOnScene(false, item.transform.position);
+    equipment.AddItem(item);
   }
 }
