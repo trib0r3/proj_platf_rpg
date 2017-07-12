@@ -50,6 +50,7 @@ public class Equipment : MonoBehaviour
     {
       m_items.Add(m_nextId++, item);
       item.transform.SetParent(m_itemsParent);
+      update_weight(weight + item.weight);
       return true;
     }
 
