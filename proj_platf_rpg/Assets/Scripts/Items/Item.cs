@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 abstract public class Item : MonoBehaviour
 {
@@ -93,7 +94,6 @@ abstract public class Item : MonoBehaviour
 
   [Header("Physical Item Representation")]
   // Representation of item in gameplay (non-ui) scene
-  [SerializeField]
   protected ItemObject m_itemObject;
 
   // Create physical representation of object during init of this item
@@ -289,6 +289,17 @@ abstract public class Item : MonoBehaviour
       m_itemObject.item = this;
 
     SetPhysicalOnScene(_physicalOnInit, _physicalInitPosition);
+
+    Button button = GetComponent<Button>();
+    if(button == null)
+    {
+      Debug.LogError("Item object have to have Button Component!", this);
+      return;
+    }
+
+    button.onClick.AddListener(
+      () => GameMaster.gm.playerEquipment.OnSelectItem(this)
+    );
   }
   #endregion
 }

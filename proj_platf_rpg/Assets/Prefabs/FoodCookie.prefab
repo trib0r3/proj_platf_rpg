@@ -48,7 +48,7 @@ MonoBehaviour:
   initialProperties: 
   m_itemObject: {fileID: 0}
   _physicalOnInit: 0
-  _physicalInitPosition: {fileID: 0}
+  _physicalInitPosition: {x: 0, y: 0, z: 0}
   _physicalObjectPrefab: {fileID: 1543180564422272, guid: 5f7910246a19e9842a6fd23859ec6b84,
     type: 2}
   restore_hp: 1
@@ -91,12 +91,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114374806592054238}
-        m_MethodName: Eat
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: OnSelectItem
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 114374806592054238}
+          m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

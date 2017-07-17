@@ -7,6 +7,7 @@ public class GameMaster : MonoBehaviour
   public static GameMaster gm = null;
   public SpecialEffects specialEffects;
   public Equipment playerEquipment;
+  public Player player;
 
   [Header("Overlay")]
   public Text playerHp;

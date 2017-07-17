@@ -42,14 +42,28 @@ public class Equipment : MonoBehaviour
   [SerializeField]
   private Text m_textCapacity;
 
+  // Notice: items can be clicked only from player inventory
+  // So we haven't to check null-valued gui objects
+  [Header("Visual fields")]
+  [SerializeField]
+  private Button[] m_actionButtons;
+  [SerializeField]
+  private Text[] m_selectedTexts;
+
+  private Item m_selectedItem = null;
+
 
   public bool AddItem(Item item)
   {
     // Adds item only if can store additional items (based on item weight)
     if (weight + item.weight <= capacity)
     {
-      m_items.Add(m_nextId++, item);
+      m_items.Add(m_nextId, item);
+      item.eid = m_nextId++;
+
       item.transform.SetParent(m_itemsParent);
+      item.transform.localScale = Vector3.one;
+
       update_weight(weight + item.weight);
       return true;
     }
@@ -66,22 +80,64 @@ public class Equipment : MonoBehaviour
     if (m_items.ContainsKey(eid))
     {
       Item item = m_items[eid];
-      if (destroy)
-      {
-        Destroy(item.gameObject, 1);
-      }
-      else
-      {
-        item.transform.SetParent(transform.parent);
-      }
+      float itemWeight = item.weight;
+      
+      item.transform.SetParent(null);
+      item.transform.localScale = Vector3.one;
 
-      update_weight(weight - item.weight);
+      update_weight(weight - itemWeight);
       m_items.Remove(eid);
+
+      if (destroy)
+        Destroy(item.gameObject, 1);
 
       return true;
     }
 
     return false;
+  }
+
+  public virtual void OnSelectItem(Item item)
+  {
+    update_selected(true, item);
+  }
+
+  public void EquipSelected()
+  {
+    // properly equip/unequip item
+    m_selectedItem.SetEquipped(!m_selectedItem.HasProperty(Item.ItemProperty.EQUIPPED));
+
+    // TODO update stats
+  }
+
+  public void UseSelected()
+  {
+    // HACK temporary solution
+    // at this moment we have only one context for using item from menu
+    // if more, then we have to choose in some way
+    //
+    // idea: lets add new item property "USABLE" and define new method "DefaultUseBehaviour"
+    //   then each time we use item in USABLE ctx the DefaultUseBehaviour will be called
+    m_selectedItem.Use(Item.ItemProperty.EATABLE);
+    update_weight(weight - m_selectedItem.baseWeight);
+
+    if(m_selectedItem.quantity == 0)
+    {
+      // item is used & no items left in stack, so delete it
+      DeleteItem(m_selectedItem.eid, true);
+      update_selected(false);
+    }
+  }
+
+  public void DropSelected()
+  {
+    DeleteItem(m_selectedItem.eid);
+    m_selectedItem.SetPhysicalOnScene(
+      true, 
+      GameMaster.gm.player.transform.position + new Vector3(0, 2, 0)
+    );
+
+    update_selected(false);
   }
 
 
@@ -121,5 +177,48 @@ public class Equipment : MonoBehaviour
 
     if(m_textCapacity != null)
       m_textCapacity.text = string.Format("{0} / {1}", weight, capacity);
+  }
+
+  private void update_selected(bool selected, Item item = null)
+  {
+    foreach(Button button in m_actionButtons)
+    {
+      button.interactable = selected;
+    }
+
+    if(selected)
+    {
+      // fix buttons
+      if (!item.HasProperty(Item.ItemProperty.EQUIPABLE))
+        m_actionButtons[0].interactable = false;
+
+      if (!item.HasProperty(Item.ItemProperty.EATABLE) /* or any other "USABLE" property */)
+        m_actionButtons[1].interactable = false;
+    }
+
+    if(m_selectedItem != null)
+    {
+      // if we selected earlier something lets recolor it
+      m_selectedItem.GetComponent<Image>().color = new Color(1, 1, 1);
+    }
+
+    if (selected)
+    {
+      // recolor item to make item visually selected
+      item.GetComponent<Image>().color = new Color32(155, 155, 155, 255);
+
+      // update values
+      m_selectedTexts[0].text = item.itemName;
+      m_selectedTexts[1].text = item.itemDescription;
+    }
+    else
+    {
+      foreach(Text text in m_selectedTexts)
+      {
+        text.text = "";
+      }
+    }
+
+    m_selectedItem = item;
   }
 }

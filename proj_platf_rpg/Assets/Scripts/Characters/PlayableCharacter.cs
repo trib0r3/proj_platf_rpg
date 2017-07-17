@@ -274,8 +274,6 @@ public class PlayableCharacter : MonoBehaviour
 
   protected void CollectItem(Item item)
   {
-    Debug.Log("Collect item!");
-
     item.SetPhysicalOnScene(false, item.transform.position);
     equipment.AddItem(item);
   }
