@@ -14,19 +14,19 @@ public class ItemFood : Item
     return restore_hp * GetStatsMultiplier();
   }
 
-  public void Eat()
+  public void Eat(PlayableCharacter user)
   {
-    Use(ItemProperty.EATABLE);
+    Use(ItemProperty.EATABLE, user);
   }
 
-  protected override void on_item_use(ItemProperty useContext)
+  protected override void on_item_use(ItemProperty useContext, PlayableCharacter user)
   {
     switch(useContext)
     {
       case ItemProperty.EATABLE:
         // only correct value
         // TODO restore caller hp
-        eat();
+        eat(user);
         break;
 
       default:
@@ -51,9 +51,12 @@ public class ItemFood : Item
   }
 
 
-  private void eat()
+  private void eat(PlayableCharacter user)
   {
     quantity--;
     m_useLock = true;
+    
+    user.stats.hp += GetRestorationHP();
+    GameMaster.gm.UpdateGUI();
   }
 }

@@ -105,9 +105,7 @@ public class Equipment : MonoBehaviour
   public void EquipSelected()
   {
     // properly equip/unequip item
-    m_selectedItem.SetEquipped(!m_selectedItem.HasProperty(Item.ItemProperty.EQUIPPED));
-
-    // TODO update stats
+    m_selectedItem.SetEquipped(!m_selectedItem.HasProperty(Item.ItemProperty.EQUIPPED), GameMaster.gm.player);
   }
 
   public void UseSelected()
@@ -118,13 +116,13 @@ public class Equipment : MonoBehaviour
     //
     // idea: lets add new item property "USABLE" and define new method "DefaultUseBehaviour"
     //   then each time we use item in USABLE ctx the DefaultUseBehaviour will be called
-    m_selectedItem.Use(Item.ItemProperty.EATABLE);
+    m_selectedItem.Use(Item.ItemProperty.EATABLE, GameMaster.gm.player);
     update_weight(weight - m_selectedItem.baseWeight);
 
     if(m_selectedItem.quantity == 0)
     {
-      // item is used & no items left in stack, so delete it
-      DeleteItem(m_selectedItem.eid, true);
+      // item is used & no items left in stack, so delete it from equipment
+      DeleteItem(m_selectedItem.eid);
       update_selected(false);
     }
   }

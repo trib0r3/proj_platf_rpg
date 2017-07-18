@@ -121,7 +121,7 @@ abstract public class Item : MonoBehaviour
 
   }
 
-  public virtual void Use(ItemProperty useContext)
+  public virtual void Use(ItemProperty useContext, PlayableCharacter user)
   {
     if (HasProperty(ItemProperty.DISABLED) || !HasProperty(useContext))
     {
@@ -140,7 +140,7 @@ abstract public class Item : MonoBehaviour
     else
     {
       // more actions should be implemented by user
-      on_item_use(useContext);
+      on_item_use(useContext, user);
     }
   }
 
@@ -157,7 +157,7 @@ abstract public class Item : MonoBehaviour
     return false;
   }
 
-  public bool SetEquipped(bool equip)
+  public bool SetEquipped(bool equip, PlayableCharacter user)
   {
     if(!HasProperty(ItemProperty.EQUIPABLE))
     {
@@ -180,7 +180,8 @@ abstract public class Item : MonoBehaviour
           // item is equipped and we want to un-equip it
           disable_property(ItemProperty.EQUIPPED);
         }
-          
+
+        Use(ItemProperty.EQUIPPED, user);
         return true;
       }
       else
@@ -217,7 +218,7 @@ abstract public class Item : MonoBehaviour
   #endregion
 
   #region Protected methods
-  protected abstract void on_item_use(ItemProperty useContext);
+  protected abstract void on_item_use(ItemProperty useContext, PlayableCharacter user);
   protected abstract void on_item_use_failure();
 
   protected void on_item_quality_changed(ItemQuality q)

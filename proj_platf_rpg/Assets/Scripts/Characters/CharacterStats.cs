@@ -11,6 +11,11 @@ public class CharacterStats : MonoBehaviour
     {
       return m_hp;
     }
+
+    set
+    {
+      m_hp = value;
+    }
   }
 
   public float dmg
@@ -18,6 +23,11 @@ public class CharacterStats : MonoBehaviour
     get
     {
       return m_dmg;
+    }
+
+    set
+    {
+      m_dmg = value;
     }
   }
 

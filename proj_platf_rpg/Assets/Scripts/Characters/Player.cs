@@ -11,7 +11,7 @@ public class Player : PlayableCharacter
 
   public override void NotifyDamageTaken()
   {
-    GameMaster.gm.playerHp.text = stats.hp.ToString() + " HP";
+    GameMaster.gm.UpdateGUI();
 
     base.NotifyDamageTaken();
     m_conditionDeath.CheckConditions();
@@ -26,7 +26,7 @@ public class Player : PlayableCharacter
       Debug.LogWarning("Death condition for player is not set!", this);
     }
 
-    GameMaster.gm.playerHp.text = stats.hp.ToString() + " HP";
+    GameMaster.gm.UpdateGUI();
 
     // NOTICE default behaviour for player
     // we are assuming there is only one player in game

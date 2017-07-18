@@ -90,6 +90,11 @@ public class GameMaster : MonoBehaviour
       condNoEnemies.CheckConditions();
   }
 
+  public void UpdateGUI()
+  {
+    playerHp.text = string.Format("{0} HP", player.stats.hp);
+  }
+
   private void Update()
   {
     if (Input.GetKeyDown(KeyCode.Escape))
