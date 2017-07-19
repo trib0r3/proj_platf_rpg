@@ -274,6 +274,7 @@ public class PlayableCharacter : MonoBehaviour
 
   protected void CollectItem(Item item)
   {
+    GameMaster.gm.questBoard.NotifyNewEvent(item.tag, item.quantity);
     item.SetPhysicalOnScene(false, item.transform.position);
     equipment.AddItem(item);
   }

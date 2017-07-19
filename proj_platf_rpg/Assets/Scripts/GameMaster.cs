@@ -8,6 +8,7 @@ public class GameMaster : MonoBehaviour
   public SpecialEffects specialEffects;
   public Equipment playerEquipment;
   public Player player;
+  public QuestBoard questBoard;
 
   [Header("Overlay")]
   public Text playerHp;

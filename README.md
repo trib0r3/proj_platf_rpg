@@ -34,7 +34,7 @@ Czesc dotyczaca RPG znajduje sie pod branchami:
 1. [Masz moj miecz!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/10-masz-moj-miecz) - ekwipunek, czesc pierwsza (GUI)
 2. [(masz) i moja tarcze!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/11-masz-i-moja-tarcze/) - ekwipunek, wprowadzenie niby-przedmiotow
 3. [(masz) i moj luk](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/12-masz-i-moj-luk/) - ekwipunek, integracja z UI
-4. Znajdz, zabij, posprzataj... - system zadan
+4. [Znajdz, zabij, posprzataj](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/13-znajdz-zabij-zakop/) - system zadan
 5. Fireball! - umiejetnosci
 6. Powodzenia na szlaku - zakonczenie prac
 

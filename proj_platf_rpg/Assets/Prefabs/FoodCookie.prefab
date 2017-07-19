@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114374806592054238}
   m_Layer: 5
   m_Name: FoodCookie
-  m_TagString: Untagged
+  m_TagString: Cookie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,6 @@ MonoBehaviour:
   itemName: Cookie
   itemDescription: Just a cookie
   initialProperties: 
-  m_itemObject: {fileID: 0}
   _physicalOnInit: 0
   _physicalInitPosition: {x: 0, y: 0, z: 0}
   _physicalObjectPrefab: {fileID: 1543180564422272, guid: 5f7910246a19e9842a6fd23859ec6b84,
