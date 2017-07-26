@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114978802114627988}
   - component: {fileID: 114347664110635424}
   - component: {fileID: 114254059682402956}
+  - component: {fileID: 114588332955024340}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -48,6 +49,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1253298329272848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4323167111781194}
+  m_Layer: 8
+  m_Name: Skills
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1274264587130422
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +76,22 @@ GameObject:
   - component: {fileID: 95874529179267184}
   m_Layer: 8
   m_Name: Renderer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1302362263070846
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4649220428036020}
+  - component: {fileID: 114906769773351282}
+  m_Layer: 0
+  m_Name: SkillHeal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,6 +165,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1610775407733590
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4890285981533548}
+  m_Layer: 0
+  m_Name: Unknown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1664850314026100
 GameObject:
   m_ObjectHideFlags: 1
@@ -145,6 +192,21 @@ GameObject:
   - component: {fileID: 114118311192807936}
   m_Layer: 9
   m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1836005288736366
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4429401937734996}
+  m_Layer: 0
+  m_Name: Learnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,6 +256,21 @@ Transform:
   m_Father: {fileID: 4074889313323734}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4323167111781194
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1253298329272848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4429401937734996}
+  - {fileID: 4890285981533548}
+  m_Father: {fileID: 4351949632628622}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4351949632628622
 Transform:
   m_ObjectHideFlags: 1
@@ -208,7 +285,21 @@ Transform:
   - {fileID: 4528138308578586}
   - {fileID: 4074889313323734}
   - {fileID: 4526534596869074}
+  - {fileID: 4323167111781194}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4429401937734996
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836005288736366}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4323167111781194}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4464218373185614
@@ -264,6 +355,19 @@ Transform:
   m_Father: {fileID: 4351949632628622}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4649220428036020
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302362263070846}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.97, y: 6.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4890285981533548}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4723499860251204
 Transform:
   m_ObjectHideFlags: 1
@@ -276,6 +380,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4074889313323734}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4890285981533548
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1610775407733590}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4649220428036020}
+  m_Father: {fileID: 4323167111781194}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4907527274746650
 Transform:
@@ -510,6 +628,24 @@ MonoBehaviour:
   m_ammunition: 1
   m_cooldown: 1
   m_animator: {fileID: 0}
+--- !u!114 &114588332955024340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098421788688132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63efb0ec50ebb8447b778bb953695c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableSkillpoints: 0
+  availableSkills:
+  - {fileID: 114906769773351282}
+  learntSkills: []
+  unknownSkills: []
+  m_containerLearnt: {fileID: 4429401937734996}
+  m_containerUnknown: {fileID: 4890285981533548}
 --- !u!114 &114752778540024132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,6 +669,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetStats: {fileID: 114347664110635424}
+--- !u!114 &114906769773351282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302362263070846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd6d00b550891247848ce6ac0a760da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Self Healing
+  m_cooldown: 0
+  m_skillStatsMultiplier: 1.5
+  m_isUnlocked: 0
+  m_nextLevelCost: 1
+  restoreHP: 5
 --- !u!114 &114978802114627988
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Skill : MonoBehaviour
 {
@@ -21,12 +22,15 @@ public class Skill : MonoBehaviour
   public string skillName = "Skill";
 
   protected int m_skillLevel = 0;
-
-  [SerializeField]
-  protected CharacterController m_owner;
-
-  [SerializeField]
+  protected bool m_isReadyToUse = true;
+  protected PlayableCharacter m_owner;
   protected SkillTree m_skillTree;
+
+  // end extra values can be here, like "mana cost"
+
+
+  [SerializeField]
+  protected float m_cooldown = 0;
 
   [SerializeField]
   protected float m_skillStatsMultiplier = 1.5f;
@@ -50,7 +54,14 @@ public class Skill : MonoBehaviour
       return;
     }
 
-    // rest is done by implementation in non-virtual class
+    // if skill still needs time to cooldown...
+    if (!m_isReadyToUse)
+      return;
+
+    // begin waiting time
+    Cooldown();
+
+    // NOTICE rest is done by implementation in non-virtual class
   }
 
   public bool Unlock()
@@ -72,7 +83,7 @@ public class Skill : MonoBehaviour
     return true;
   }
 
-  public void SetOwner(CharacterController character, SkillTree tree)
+  public void SetOwner(PlayableCharacter character, SkillTree tree)
   {
     m_skillTree = tree;
     m_owner = character;
@@ -104,5 +115,14 @@ public class Skill : MonoBehaviour
       m_unlockRequirements = null;
       m_skillLevel = Mathf.Max(m_skillLevel, 1);
     }
+  }
+
+  protected IEnumerator Cooldown()
+  {
+    m_isReadyToUse = false;
+
+    yield return new WaitForSeconds(m_cooldown);
+
+    m_isReadyToUse = true;
   }
 }
