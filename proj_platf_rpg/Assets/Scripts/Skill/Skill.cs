@@ -89,12 +89,12 @@ public class Skill : MonoBehaviour
     m_owner = character;
   }
 
-  private int CalculateNextLevelCost()
+  public int CalculateNextLevelCost()
   {
     return m_nextLevelCost * m_costUnlockMultiplier;
   }
 
-  private bool CheckRequirements()
+  public bool CheckRequirements()
   {
     if(m_unlockRequirements != null)
     {

@@ -15,6 +15,8 @@ public class CharacterStats : MonoBehaviour
     set
     {
       m_hp = value;
+      if (gameObject.tag == "Player")
+        GameMaster.gm.UpdateGUI();
     }
   }
 

@@ -18,18 +18,33 @@ public class SkillTree : MonoBehaviour
   [SerializeField]
   private Transform m_containerUnknown;
 
-  [HideInInspector]
   private PlayableCharacter m_owner;
+  private Skill m_activeSkill;
 
-  public void Learn(Skill skill)
+  public bool Learn(Skill skill)
   {
-    if(skill.Unlock())
+    return skill.Unlock();
+  }
+
+  public void UseSkill()
+  {
+    // Use active skill, in our implementation we are allowing for only 1 active skill
+    if(m_activeSkill != null)
     {
-      Debug.Log(string.Format("Skill {0} learnt! Current level: {1}", skill.skillName, skill.skillLevel));
+      m_activeSkill.Use(null);
     }
-    else
+  }
+
+  public void SetActiveSkillOnSlot(Skill skill)
+  {
+    // here we can add param "slot_number" to this method
+    // that defines assigning slot id
+    // we have only one active skill, so we dont need this
+
+    if(skill.isUnlocked && learntSkills.Contains(skill))
     {
-      Debug.Log(string.Format("Cannot learn or upgrade skill: {0}, not enough XP", skill.skillName));
+      // simple lock-check that evades activating skill from outside the skill tree
+      m_activeSkill = skill;
     }
   }
 
@@ -64,6 +79,14 @@ public class SkillTree : MonoBehaviour
       }
 
       availableSkills = null;
+    }
+  }
+
+  private void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.H) && m_activeSkill != null)
+    {
+      m_activeSkill.Use(null);
     }
   }
 }

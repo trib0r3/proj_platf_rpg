@@ -15,6 +15,9 @@ public class GameMaster : MonoBehaviour
   public string levelDetails = "";
   public GameObject equipmentMenu;
 
+  [SerializeField]
+  public SkillTreeVisual skillTreeOverlay;
+
   [Header("Ingame Menu")]
   [SerializeField]
   GameObject m_gameMenuParent;
@@ -108,6 +111,12 @@ public class GameMaster : MonoBehaviour
     {
       // toggle inventory window
       equipmentMenu.SetActive(!equipmentMenu.activeSelf);
+    }
+
+    if(Input.GetKeyDown(KeyCode.K))
+    {
+      // toggle skill overlay
+      skillTreeOverlay.gameObject.SetActive(!skillTreeOverlay.gameObject.activeSelf);
     }
   }
 
