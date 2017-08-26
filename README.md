@@ -36,7 +36,7 @@ Czesc dotyczaca RPG znajduje sie pod branchami:
 3. [(masz) i moj luk](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/12-masz-i-moj-luk/) - ekwipunek, integracja z UI
 4. [Znajdz, zabij, posprzataj](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/13-znajdz-zabij-posprzataj/) - system zadan
 5. [Fireball!](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/14-fireball/) - umiejetnosci
-6. Powodzenia na szlaku - zakonczenie prac
+6. [Powodzenia na szlaku](http://szymonsiarkiewicz.pl/poradniki/proj_platf_rpg/15-powodzenia-na-szlaku/) - zakonczenie prac
 
 ## Wspoluczestnictwo w projekcie
 
